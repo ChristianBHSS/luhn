@@ -52,20 +52,49 @@ def enterCustomerInfo():
     pass    # Remove this pass statement and add your own code below
 
 '''
-    This function is to be edited to achieve the task.
-    It is your decision to make this function a procedural or functional type
-    You may place as many or as few parameters as needed
-    This function may also be broken down further depending on your algorithm/approach
+    Entering/Validating Postal Code
 '''
 
+# Entering Postal Code
 def enterPostalCode():
-	valid_postal_code = False
-	while valid_postal_code == False:
-		enter_postal_code = input("Postal Code: ")
-		if len(enter_postal_code) != 3:
-			return
-		
+    valid_postal_code = False
+    loop_hole = False
 
+	# Used to stop complete break out of function
+    while loop_hole == False:
+    	# Keeps looping until proper postal code
+        while valid_postal_code == False:
+            enter_postal_code = input("Postal Code: ")
+
+            # Checks if input length is not 3
+            if len(enter_postal_code) != 3: 
+                print("Input proper length (3)")
+                continue
+
+            # Continues if input length is 3
+            else:
+                break_loop = False
+                for x in range(len(enter_postal_code)):
+                    
+                    # Checks if character is a digit or letter in correct position
+                    if (x % 2 == 0 and enter_postal_code[x].isalpha() == True) or (x % 2 == 1 and enter_postal_code[x].isdigit() == True): 
+                        continue
+
+					# If character not correct, breaks out of for loop
+                    else:
+                        print("Input proper postal code.")
+                        valid_postal_code = False
+                        break_loop = True
+                        break
+
+				# Returns to while loop for new postal code input if character not correct
+                if break_loop == True:
+                    break
+				
+                # Returns postal code if valid
+                return enter_postal_code
+		
+# Checks if first 3 characters in PostalCode are in files
 def validatePostalCode(PostalCode, csv_file):
     if PostalCode[:3] in postal_codes: 
         return True
