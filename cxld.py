@@ -149,8 +149,24 @@ def validateCreditCard(card):
     You may place as many or as few parameters as needed
     This function may also be broken down further depending on your algorithm/approach
 '''
-def generateCustomerDataFile():
-    pass    # Remove this pass statement and add your own code below
+def generateCustomerDataFile(customer_data):
+    
+    file_name = input("What would you like the file name to be (no extension): ")
+    file_name = file_name + ".csv"
+    
+    contents = "id, first_name, last_name, city, postal_code, credit_card\n"
+    for user in customer_info:
+
+        for index, item in enumerate(user):
+            user[index] = str(item)
+
+        user_string = ",".join(user) + "\n"
+        contents += user_string
+
+    with open(file_name, "w") as fp:
+        fp.write(contents)
+
+    return file_name
 
 ####################################################################
 #       ADDITIONAL METHODS MAY BE ADDED BELOW IF NECESSARY         #
@@ -172,10 +188,13 @@ exitCondition = "9"
 
 # More variables for the main may be declared in the space below
 
+# [id, first_name, last_name, city, postal_code, credit_card]
+
 with open("postal_codes.csv", "r") as csv_codes:
     postal_codes = [(line.split("|")[0]) for line in csv_codes.read().split("\n")]
 del postal_codes[-1]
 
+customer_info = []
 
 while userInput != exitCondition:
     printMenu()                 # Printing out the main menu
@@ -184,11 +203,15 @@ while userInput != exitCondition:
     if userInput == enterCustomerOption:
         # Only the line below may be edited based on the parameter list and how you design the method return
         # Any necessary variables may be added to this if section, but nowhere else in the code
-        enterCustomerInfo(postal_codes)
+        user_info = enterCustomerInfo(postal_codes)
+        user_info.insert(0, len(customer_info) + 1)
+        customer_info.append(user_info)
+
 
     elif userInput == generateCustomerOption: 
             # Only the line below may be edited based on the parameter list and how you design the method return
-        generateCustomerDataFile()
+        file_name = generateCustomerDataFile(customer_info)
+        print(file_name)
 
     else:
         print("Please type in a valid option (A number from 1-9)")
