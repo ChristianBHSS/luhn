@@ -56,6 +56,8 @@ def enterCustomerInfo(postal_codes):
         else:
             break
 
+    return [first_name, last_name, city, postal_code, card_num]
+
     
 
 
