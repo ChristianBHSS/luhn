@@ -49,7 +49,8 @@ def inputMenu():
         inputMenu()
 
 def enterCustomerInfo():
-    pass    # Remove this pass statement and add your own code below
+    enterPostalCode()
+	pass# Remove this pass statement and add your own code below
 
 '''
     Entering/Validating Postal Code
