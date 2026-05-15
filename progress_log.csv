@@ -1,4 +1,4 @@
-Name, task, time
+Name, task, date
 Christian, Added input menu function, 2026-05-13
 Charles, Made postal code function, 2026-05-14
 Robert, Made Luhns algorithm credit validator, 2025-05-14
@@ -9,3 +9,4 @@ Christian, Worked on reciving customer info, 2025-05-15
 Robert, Fixed bug with postal code interpreter (number count), 2025-05-15
 Charles, Finished postal code verification, 2025-05-15
 Christian + Robert + Charles, Worked on wrapping it up and input, 2025-05-15
+Christian, add generating info file, 2025-05-15
