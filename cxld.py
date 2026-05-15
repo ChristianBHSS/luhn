@@ -28,29 +28,37 @@ def printMenu():
 def inputMenu():
     choice = int(input("Enter menu option (1-9)"))
     if choice in range(1,5):
-        match choice:
-            case 1:
-                enterCustomerInfo()
-            case 2:
-                generateCustomerDataFile()
-            case 3:
-                # report on total sales
-                pass
-            case 4:
-                # check for fraud in sales data
-                pass
-            case _:
-                pass
+        return str(choice)
     elif choice == 9:
-        print("Thank you for using the program!")
-        quit()
+        return str(choice)
     else:
         print("Invalid Choice, Try Again!")
         inputMenu()
 
-def enterCustomerInfo():
-    enterPostalCode()
-	pass# Remove this pass statement and add your own code below
+def enterCustomerInfo(postal_codes):
+    
+    first_name = input("What is your first name: ")
+    last_name = input("What is your last name: ")
+    city = input("What is your city: ")
+
+    postal_code = enterPostalCode()
+    if not validatePostalCode(postal_code, postal_codes):
+        print("Not a valid Canadian postal code")
+        return
+    else:
+        pass
+
+    while True:
+        card_num = input("Please enter your credit card number: ")
+        if not validateCreditCard(card_num):
+            print("Invalid credit card number. Try again.")
+            continue
+        else:
+            break
+
+    
+
+
 
 '''
     Entering/Validating Postal Code
@@ -67,8 +75,8 @@ def enterPostalCode():
             enter_postal_code = input("Postal Code: ")
 
             # Checks if input length is not 3
-            if len(enter_postal_code) != 3: 
-                print("Input proper length (3)")
+            if len(enter_postal_code) != 6: 
+                print("Input proper length (6)")
                 continue
 
             # Continues if input length is 3
@@ -95,8 +103,8 @@ def enterPostalCode():
                 return enter_postal_code
 		
 # Checks if first 3 characters in PostalCode are in files
-def validatePostalCode(PostalCode, csv_file):
-    if PostalCode[:3] in postal_codes: 
+def validatePostalCode(PostalCode, postal_codes):
+    if PostalCode[:3].upper() in postal_codes: 
         return True
     else:
         return False
@@ -172,9 +180,9 @@ while userInput != exitCondition:
     userInput = inputMenu();        # User selection from the menu
 
     if userInput == enterCustomerOption:
-            # Only the line below may be edited based on the parameter list and how you design the method return
-            # Any necessary variables may be added to this if section, but nowhere else in the code
-            enterCustomerInfo()
+        # Only the line below may be edited based on the parameter list and how you design the method return
+        # Any necessary variables may be added to this if section, but nowhere else in the code
+        enterCustomerInfo(postal_codes)
 
     elif userInput == generateCustomerOption: 
             # Only the line below may be edited based on the parameter list and how you design the method return
