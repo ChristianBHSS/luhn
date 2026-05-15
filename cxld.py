@@ -59,10 +59,9 @@ def enterCustomerInfo():
 # Entering Postal Code
 def enterPostalCode():
     valid_postal_code = False
-    loop_hole = False
 
 	# Used to stop complete break out of function
-    while loop_hole == False:
+    while True:
     	# Keeps looping until proper postal code
         while valid_postal_code == False:
             enter_postal_code = input("Postal Code: ")
